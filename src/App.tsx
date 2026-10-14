@@ -6,7 +6,7 @@ import { ApplicationModal } from './components/ApplicationModal.tsx';
 import { WhatsAppModal } from './components/WhatsAppModal.tsx';
 import { TrackDetailModal } from './components/TrackDetailModal.tsx';
 import { OutputCollage } from './components/OutputCollage.tsx';
-import { TRACKS, SPRINT_EXPERIENCES, FAQS, TrackInfo } from './data/clubData.ts';
+import { TRACKS, SPRINT_EXPERIENCES, FAQS, TrackInfo, OFFICIAL_LINKS } from './data/clubData.ts';
 
 export default function App() {
   // Modal states
@@ -101,18 +101,29 @@ export default function App() {
 
               {/* Hero CTA Buttons */}
               <div className="pt-2 flex flex-col sm:flex-row gap-3 sm:items-center">
-                <button
-                  onClick={() => handleOpenApply()}
-                  className="px-7 py-3.5 rounded-xl bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-extrabold text-sm tracking-wide transition-all duration-200 shadow-[0_0_20px_rgba(21,174,239,0.35)] hover:shadow-[0_0_30px_rgba(25,228,242,0.7)] flex items-center justify-center gap-2 cursor-pointer"
+                <a
+                  href={OFFICIAL_LINKS.RECRUITMENT_FORM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-7 py-3.5 rounded-xl bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-extrabold text-sm tracking-wide transition-all duration-200 shadow-[0_0_20px_rgba(21,174,239,0.35)] hover:shadow-[0_0_30px_rgba(25,228,242,0.7)] flex items-center justify-center gap-2 cursor-pointer text-center"
                 >
                   APPLY NOW — 90 SEC →
-                </button>
+                </a>
 
-                <button
-                  onClick={handleOpenWhatsApp}
-                  className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-sm tracking-wide transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer hover:border-[#19E4F2]/40"
+                <a
+                  href={OFFICIAL_LINKS.WHATSAPP_COMMUNITY}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-sm tracking-wide transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer hover:border-[#19E4F2]/40 text-center"
                 >
                   JOIN WHATSAPP COMMUNITY ↗
+                </a>
+
+                <button
+                  onClick={() => handleOpenApply()}
+                  className="text-xs font-mono text-zinc-400 hover:text-[#19E4F2] underline underline-offset-4 py-2 sm:py-0 text-center"
+                >
+                  (Or fast in-app form)
                 </button>
               </div>
 
@@ -647,50 +658,95 @@ export default function App() {
             {/* 3 Step Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Step 01 */}
-              <div className="p-6 sm:p-8 rounded-2xl bg-[#060a14] border border-white/10 space-y-3">
-                <span className="font-mono text-2xl font-black text-[#19E4F2] block">01</span>
-                <h3 className="text-xl font-bold text-white">APPLY</h3>
-                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                  Fill out the short recruitment form with your basic details and builder interest.
-                </p>
-                <span className="inline-block text-xs font-mono text-[#15AEEF]">≈ 90 seconds</span>
+              <div className="p-6 sm:p-8 rounded-2xl bg-[#060a14] border border-white/10 space-y-4 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="font-mono text-2xl font-black text-[#19E4F2] block">01</span>
+                  <div className="text-xs font-mono text-[#19E4F2] font-bold">
+                    👉 Step 1: Fill Recruitment Form
+                  </div>
+                  <h3 className="text-xl font-bold text-white">APPLY</h3>
+                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                    Fill out the short recruitment form with your basic details and builder interest. (Takes 90 secs)
+                  </p>
+                  <div className="text-[11px] font-mono text-zinc-500 truncate">
+                    {OFFICIAL_LINKS.RECRUITMENT_FORM}
+                  </div>
+                </div>
+                <a
+                  href={OFFICIAL_LINKS.RECRUITMENT_FORM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-3 rounded-lg bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-bold text-xs text-center transition-colors block"
+                >
+                  Open Official Form (90s) ↗
+                </a>
               </div>
 
               {/* Step 02 */}
-              <div className="p-6 sm:p-8 rounded-2xl bg-[#060a14] border border-white/10 space-y-3">
-                <span className="font-mono text-2xl font-black text-[#19E4F2] block">02</span>
-                <h3 className="text-xl font-bold text-white">CONNECT</h3>
-                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                  Join the official AU Startup Club WhatsApp Community for sprint notifications.
-                </p>
-                <span className="inline-block text-xs font-mono text-emerald-400">Instant Access</span>
+              <div className="p-6 sm:p-8 rounded-2xl bg-[#060a14] border border-emerald-500/30 space-y-4 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="font-mono text-2xl font-black text-emerald-400 block">02</span>
+                  <div className="text-xs font-mono text-emerald-400 font-bold">
+                    👉 Step 2: Join WhatsApp Community
+                  </div>
+                  <h3 className="text-xl font-bold text-white">CONNECT</h3>
+                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                    Instantly join the official AU Startup Club WhatsApp Community for sprint notifications.
+                  </p>
+                  <div className="text-[11px] font-mono text-zinc-500 truncate">
+                    {OFFICIAL_LINKS.WHATSAPP_COMMUNITY}
+                  </div>
+                </div>
+                <a
+                  href={OFFICIAL_LINKS.WHATSAPP_COMMUNITY}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-3 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs text-center transition-colors block"
+                >
+                  Join Official WhatsApp ↗
+                </a>
               </div>
 
               {/* Step 03 */}
-              <div className="p-6 sm:p-8 rounded-2xl bg-[#060a14] border border-white/10 space-y-3">
-                <span className="font-mono text-2xl font-black text-[#FF6A19] block">03</span>
-                <h3 className="text-xl font-bold text-white">BUILD</h3>
-                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                  Selected candidates join the Core Council or Active Cohort and start working on real initiatives.
-                </p>
-                <span className="inline-block text-xs font-mono text-[#FF6A19]">Ship to Production</span>
+              <div className="p-6 sm:p-8 rounded-2xl bg-[#060a14] border border-white/10 space-y-4 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <span className="font-mono text-2xl font-black text-[#FF6A19] block">03</span>
+                  <div className="text-xs font-mono text-[#FF6A19] font-bold">
+                    👉 Step 3: Start Building
+                  </div>
+                  <h3 className="text-xl font-bold text-white">BUILD</h3>
+                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                    Selected candidates join the Core Council or Active Cohort and start shipping real initiatives.
+                  </p>
+                  <span className="inline-block text-xs font-mono text-[#FF6A19]">Ship to Production</span>
+                </div>
+                <button
+                  onClick={() => handleOpenApply()}
+                  className="w-full py-2.5 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold text-xs text-center transition-colors"
+                >
+                  Quick In-App Preview →
+                </button>
               </div>
             </div>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-              <button
-                onClick={() => handleOpenApply()}
-                className="px-8 py-3.5 rounded-xl bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-extrabold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(21,174,239,0.3)] cursor-pointer"
+              <a
+                href={OFFICIAL_LINKS.RECRUITMENT_FORM}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3.5 rounded-xl bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-extrabold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(21,174,239,0.3)] cursor-pointer text-center"
               >
-                FILL RECRUITMENT FORM →
-              </button>
-              <button
-                onClick={handleOpenWhatsApp}
-                className="px-8 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-sm tracking-wide transition-all cursor-pointer"
+                FILL RECRUITMENT FORM (90 SECS) ↗
+              </a>
+              <a
+                href={OFFICIAL_LINKS.WHATSAPP_COMMUNITY}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-sm tracking-wide transition-all cursor-pointer text-center hover:border-emerald-500/40"
               >
-                JOIN WHATSAPP →
-              </button>
+                JOIN OFFICIAL WHATSAPP COMMUNITY ↗
+              </a>
             </div>
           </div>
         </section>
@@ -777,18 +833,22 @@ export default function App() {
 
             {/* CTAs */}
             <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-              <button
-                onClick={() => handleOpenApply()}
-                className="px-9 py-4 rounded-xl bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-extrabold text-sm uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(21,174,239,0.5)] cursor-pointer"
+              <a
+                href={OFFICIAL_LINKS.RECRUITMENT_FORM}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-9 py-4 rounded-xl bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-extrabold text-sm uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(21,174,239,0.5)] cursor-pointer text-center"
               >
-                APPLY NOW →
-              </button>
-              <button
-                onClick={handleOpenWhatsApp}
-                className="px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/20 text-white font-semibold text-sm uppercase tracking-wider transition-all cursor-pointer"
+                APPLY NOW (GOOGLE FORM) →
+              </a>
+              <a
+                href={OFFICIAL_LINKS.WHATSAPP_COMMUNITY}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/20 text-white font-semibold text-sm uppercase tracking-wider transition-all cursor-pointer text-center hover:border-emerald-500/40"
               >
-                JOIN THE COMMUNITY ↗
-              </button>
+                JOIN THE COMMUNITY (WHATSAPP) ↗
+              </a>
             </div>
 
             <div className="pt-6 space-y-1">

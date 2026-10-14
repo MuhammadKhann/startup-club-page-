@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenApply }) => {
             href="#"
             className="flex items-center gap-3 group text-white hover:opacity-90 transition-opacity whitespace-nowrap shrink-0"
           >
-            <RocketLogo size="md" showGlow={false} />
+            <RocketLogo size="md" showGlow={true} />
             <div className="flex items-center gap-2">
               <span className="font-extrabold tracking-wider text-base sm:text-lg text-white font-sans">
                 AU STARTUP CLUB

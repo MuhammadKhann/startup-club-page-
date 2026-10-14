@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { RocketLogo } from './RocketLogo.tsx';
+import { OFFICIAL_LINKS } from '../data/clubData.ts';
 
 interface WhatsAppModalProps {
   isOpen: boolean;
@@ -13,7 +14,7 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({
   onOpenApply,
 }) => {
   const [copied, setCopied] = useState(false);
-  const communityLink = 'https://chat.whatsapp.com/AU-Startup-Club-Multan-2026';
+  const communityLink = OFFICIAL_LINKS.WHATSAPP_COMMUNITY;
 
   if (!isOpen) return null;
 

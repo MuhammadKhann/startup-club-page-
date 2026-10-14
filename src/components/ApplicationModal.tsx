@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { DEPARTMENTS, SEMESTERS, TRACKS } from '../data/clubData.ts';
+import { DEPARTMENTS, SEMESTERS, TRACKS, OFFICIAL_LINKS } from '../data/clubData.ts';
 import { RocketLogo } from './RocketLogo.tsx';
 
 interface ApplicationModalProps {
@@ -97,8 +97,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
         </button>
 
         {/* Modal Header */}
-        <div className="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
-          <RocketLogo size="sm" showGlow={false} />
+        <div className="flex items-center gap-3 mb-4 border-b border-white/10 pb-4">
+          <RocketLogo size="sm" showGlow={true} />
           <div>
             <div className="flex items-center gap-2">
               <span className="font-mono text-[11px] text-[#19E4F2] font-semibold tracking-wider uppercase">
@@ -112,6 +112,28 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
             </h2>
           </div>
         </div>
+
+        {/* Official Google Form Direct Banner */}
+        {step < 4 && (
+          <div className="mb-5 p-3 rounded-xl bg-[#15AEEF]/10 border border-[#15AEEF]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="text-left">
+              <span className="font-mono text-[10px] text-[#19E4F2] uppercase font-bold block">
+                👉 Step 1: Official Recruitment Form
+              </span>
+              <span className="text-xs text-zinc-300">
+                You can also fill the official Google Form directly (90 secs).
+              </span>
+            </div>
+            <a
+              href={OFFICIAL_LINKS.RECRUITMENT_FORM}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-1.5 rounded-lg bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-bold text-xs whitespace-nowrap shrink-0 transition-colors text-center"
+            >
+              Open Google Form ↗
+            </a>
+          </div>
+        )}
 
         {/* Step Progress Pills */}
         {step < 4 && (
@@ -390,23 +412,47 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               </button>
             </div>
 
-            {/* Crucial Next Step: Join WhatsApp */}
-            <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-xl p-4 max-w-md mx-auto text-left">
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-1">
-                <span>Immediate Next Step</span>
+            {/* Crucial Next Steps: Form & WhatsApp Official Links */}
+            <div className="space-y-3 max-w-md mx-auto text-left">
+              {/* Step 1 Link Card */}
+              <div className="bg-[#0b1424] border border-[#15AEEF]/40 rounded-xl p-3.5 flex items-center justify-between gap-3">
+                <div>
+                  <span className="text-[11px] font-mono text-[#19E4F2] font-bold block">
+                    👉 Step 1: Fill Recruitment Form (90 secs)
+                  </span>
+                  <span className="text-[11px] text-zinc-400 font-mono truncate block max-w-[240px]">
+                    {OFFICIAL_LINKS.RECRUITMENT_FORM}
+                  </span>
+                </div>
+                <a
+                  href={OFFICIAL_LINKS.RECRUITMENT_FORM}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 rounded-lg bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-bold text-xs whitespace-nowrap shrink-0 transition-colors"
+                >
+                  Open Form ↗
+                </a>
               </div>
-              <p className="text-xs text-zinc-300 leading-relaxed mb-3">
-                Interviews and cohort squad assignments are coordinated directly through our official WhatsApp Community.
-              </p>
-              <button
-                onClick={() => {
-                  onClose();
-                  onOpenWhatsApp();
-                }}
-                className="w-full py-2.5 px-4 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer"
-              >
-                Join WhatsApp Community Now ↗
-              </button>
+
+              {/* Step 2 WhatsApp Card */}
+              <div className="bg-emerald-950/40 border border-emerald-500/40 rounded-xl p-3.5 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-emerald-400 font-bold block">
+                    👉 Step 2: Instantly Join Official WhatsApp Community
+                  </span>
+                </div>
+                <span className="text-[11px] text-zinc-400 font-mono truncate block">
+                  {OFFICIAL_LINKS.WHATSAPP_COMMUNITY}
+                </span>
+                <a
+                  href={OFFICIAL_LINKS.WHATSAPP_COMMUNITY}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-4 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                >
+                  Join Official WhatsApp Community ↗
+                </a>
+              </div>
             </div>
 
             <div className="pt-2">

@@ -8,10 +8,144 @@
     <meta property="og:title" content="AU Startup Club — The Rebuild Has Begun" />
     <meta property="og:description" content="Stop collecting titles. Start building things that matter. Recruitment open for 2026/27." />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <link id="app-favicon" rel="icon" type="image/svg+xml" href="/rocket-favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+      // 3D Animated Rocket Favicon Engine: creates live pulsating flame on the browser search/tab bar
+      (function() {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = 32;
+          canvas.height = 32;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) return;
+          
+          let frame = 0;
+          const faviconLink = document.getElementById('app-favicon');
+
+          function drawRocketFavicon() {
+            ctx.clearRect(0, 0, 32, 32);
+
+            // Dark rounded container
+            ctx.beginPath();
+            ctx.arc(16, 16, 15, 0, Math.PI * 2);
+            ctx.fillStyle = '#020304';
+            ctx.fill();
+            ctx.strokeStyle = '#15AEEF';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // Animated Thruster Flame shooting out
+            const flamePhase = Math.sin(frame * 0.45);
+            const flameLen = 8 + flamePhase * 3.5;
+            const flameW = 4 + Math.cos(frame * 0.4) * 1.2;
+
+            // Outer Orange/Red Flame
+            ctx.beginPath();
+            ctx.moveTo(16 - flameW, 22);
+            ctx.quadraticCurveTo(16 - flameW * 0.5, 22 + flameLen * 0.6, 16, 22 + flameLen);
+            ctx.quadraticCurveTo(16 + flameW * 0.5, 22 + flameLen * 0.6, 16 + flameW, 22);
+            ctx.closePath();
+            const flameGrad = ctx.createLinearGradient(16, 22, 16, 22 + flameLen);
+            flameGrad.addColorStop(0, '#FFFFFF');
+            flameGrad.addColorStop(0.3, '#FFF066');
+            flameGrad.addColorStop(0.65, '#FF6A19');
+            flameGrad.addColorStop(1, 'rgba(230, 81, 0, 0)');
+            ctx.fillStyle = flameGrad;
+            ctx.fill();
+
+            // Inner Core Intense White Jet Flame
+            ctx.beginPath();
+            ctx.moveTo(14.5, 22);
+            ctx.lineTo(16, 22 + flameLen * 0.65);
+            ctx.lineTo(17.5, 22);
+            ctx.closePath();
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fill();
+
+            // Ejected Sparks
+            const sparkY = 24 + ((frame * 2.5) % 7);
+            ctx.fillStyle = '#FFB020';
+            ctx.fillRect(15 + Math.sin(frame) * 1.5, sparkY, 1.5, 1.5);
+
+            // Left 3D Wing
+            ctx.beginPath();
+            ctx.moveTo(13, 14);
+            ctx.lineTo(6, 22);
+            ctx.lineTo(11, 23);
+            ctx.lineTo(13.5, 18);
+            ctx.closePath();
+            ctx.fillStyle = '#0b3c6d';
+            ctx.fill();
+            ctx.strokeStyle = '#19E4F2';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+
+            // Right 3D Wing
+            ctx.beginPath();
+            ctx.moveTo(19, 14);
+            ctx.lineTo(26, 22);
+            ctx.lineTo(21, 23);
+            ctx.lineTo(18.5, 18);
+            ctx.closePath();
+            ctx.fillStyle = '#072444';
+            ctx.fill();
+            ctx.strokeStyle = '#19E4F2';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+
+            // Center 3D Rocket Body
+            ctx.beginPath();
+            ctx.moveTo(16, 4);
+            ctx.bezierCurveTo(13, 9, 13, 17, 13, 22);
+            ctx.lineTo(19, 22);
+            ctx.bezierCurveTo(19, 17, 19, 9, 16, 4);
+            ctx.closePath();
+            const bodyGrad = ctx.createLinearGradient(13, 4, 19, 22);
+            bodyGrad.addColorStop(0, '#E0F7FA');
+            bodyGrad.addColorStop(0.4, '#19E4F2');
+            bodyGrad.addColorStop(0.8, '#15AEEF');
+            bodyGrad.addColorStop(1, '#08325C');
+            ctx.fillStyle = bodyGrad;
+            ctx.fill();
+
+            // 3D Center Specular Ridge
+            ctx.beginPath();
+            ctx.moveTo(16, 4.5);
+            ctx.lineTo(16, 21.5);
+            ctx.strokeStyle = '#FFFFFF';
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+
+            // 3D Cockpit Window
+            ctx.beginPath();
+            ctx.ellipse(16, 11, 1.8, 2.8, 0, 0, Math.PI * 2);
+            ctx.fillStyle = '#061a33';
+            ctx.fill();
+            ctx.strokeStyle = '#E0F7FA';
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+
+            // Engine Nozzle
+            ctx.fillStyle = '#FF6A19';
+            ctx.fillRect(13.5, 21.5, 5, 1);
+
+            if (faviconLink) {
+              faviconLink.href = canvas.toDataURL('image/png');
+            }
+            frame++;
+          }
+
+          // Initial draw and continuous flame loop
+          drawRocketFavicon();
+          setInterval(drawRocketFavicon, 120);
+        } catch (err) {
+          // Fallback to static SVG if canvas is restricted
+        }
+      })();
+    </script>
   </head>
   <body class="bg-[#020304] text-white selection:bg-[#15AEEF] selection:text-black antialiased font-sans">
     <div id="root"></div>

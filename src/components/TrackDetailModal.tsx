@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrackInfo } from '../data/clubData.ts';
+import { TrackInfo, OFFICIAL_LINKS } from '../data/clubData.ts';
 
 interface TrackDetailModalProps {
   track: TrackInfo | null;
@@ -113,24 +113,33 @@ export const TrackDetailModal: React.FC<TrackDetailModalProps> = ({
         </div>
 
         {/* Action Button */}
-        <div className="mt-8 pt-4 border-t border-white/10 flex justify-end gap-3">
+        <div className="mt-8 pt-4 border-t border-white/10 flex flex-col sm:flex-row justify-end gap-3 items-center">
           <button
             onClick={onClose}
-            className="px-4 py-2.5 rounded-lg text-xs font-medium text-zinc-400 hover:text-white"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-lg text-xs font-medium text-zinc-400 hover:text-white text-center"
           >
             Close
           </button>
+          <a
+            href={OFFICIAL_LINKS.RECRUITMENT_FORM}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-[0_0_15px_rgba(21,174,239,0.4)] text-center"
+          >
+            Open Official Form (90s) ↗
+          </a>
           <button
             onClick={() => {
               onClose();
               onApplyForTrack(track.id);
             }}
-            className="px-6 py-2.5 rounded-lg bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-[0_0_15px_rgba(21,174,239,0.4)]"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-lg border border-white/20 hover:border-white/40 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer text-center"
           >
-            Apply for {track.name} →
+            In-App Fast Apply →
           </button>
         </div>
       </div>
     </div>
   );
 };
+

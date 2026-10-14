@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <!-- 3D Rocket Body Gradient -->
+    <linearGradient id="body3d" x1="20" y1="8" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#E0F7FA"/>
+      <stop offset="30%" stopColor="#19E4F2"/>
+      <stop offset="70%" stopColor="#15AEEF"/>
+      <stop offset="100%" stopColor="#0B3C6D"/>
+    </linearGradient>
+
+    <!-- 3D Metallic Fin Gradient -->
+    <linearGradient id="fin3d" x1="12" y1="28" x2="32" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#19E4F2"/>
+      <stop offset="60%" stopColor="#0A2A4E"/>
+      <stop offset="100%" stopColor="#031020"/>
+    </linearGradient>
+
+    <!-- Cockpit Glass 3D Specular -->
+    <linearGradient id="cockpit3d" x1="28" y1="16" x2="36" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#FFFFFF"/>
+      <stop offset="50%" stopColor="#19E4F2"/>
+      <stop offset="100%" stopColor="#08223D"/>
+    </linearGradient>
+
+    <!-- Animated Core Flame Gradient -->
+    <linearGradient id="flameGrad" x1="32" y1="44" x2="32" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#FFFFFF"/>
+      <stop offset="25%" stopColor="#FFF176"/>
+      <stop offset="60%" stopColor="#FF6A19"/>
+      <stop offset="100%" stopColor="#E65100" stopOpacity="0"/>
+    </linearGradient>
+
+    <!-- Thruster Glow Filter -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    @keyframes thrustFlame {
+      0% {
+        d: path('M27 45 C27 45 28 58 32 63 C36 58 37 45 37 45 C34 47 30 47 27 45 Z');
+        opacity: 0.95;
+      }
+      50% {
+        d: path('M26 45 C26 45 29 64 32 61 C35 64 38 45 38 45 C35 48 29 48 26 45 Z');
+        opacity: 1;
+      }
+      100% {
+        d: path('M27 45 C27 45 28 58 32 63 C36 58 37 45 37 45 C34 47 30 47 27 45 Z');
+        opacity: 0.95;
+      }
+    }
+    @keyframes innerFlame {
+      0% {
+        d: path('M29 45 C29 45 30 54 32 58 C34 54 35 45 35 45 Z');
+      }
+      50% {
+        d: path('M28.5 45 C28.5 45 30.5 56 32 59 C33.5 56 35.5 45 35.5 45 Z');
+      }
+      100% {
+        d: path('M29 45 C29 45 30 54 32 58 C34 54 35 45 35 45 Z');
+      }
+    }
+    @keyframes sparkEmber {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(12px) scale(0.2); opacity: 0; }
+    }
+    .flame-outer {
+      animation: thrustFlame 0.18s infinite ease-in-out;
+    }
+    .flame-inner {
+      animation: innerFlame 0.15s infinite ease-in-out;
+    }
+    .spark {
+      animation: sparkEmber 0.3s infinite linear;
+    }
+  </style>
+
+  <!-- Deep Background Circle for high contrast in browser search/tab bar -->
+  <circle cx="32" cy="32" r="31" fill="#020304" stroke="#15AEEF" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Orbital Ring around rocket -->
+  <ellipse cx="32" cy="32" rx="27" ry="10" stroke="#19E4F2" stroke-width="0.8" stroke-dasharray="2 2" stroke-opacity="0.4" transform="rotate(-25 32 32)"/>
+
+  <!-- Flame Sparks Going Out from Thruster -->
+  <circle cx="32" cy="56" r="1.5" fill="#FFB020" class="spark"/>
+  <circle cx="30" cy="59" r="1.2" fill="#FF6A19" class="spark" style="animation-delay: 0.1s;"/>
+  <circle cx="34" cy="58" r="1.2" fill="#FFF" class="spark" style="animation-delay: 0.05s;"/>
+
+  <!-- Outer Main Thruster Flame Shooting Out -->
+  <path
+    class="flame-outer"
+    d="M27 45 C27 45 28 58 32 63 C36 58 37 45 37 45 C34 47 30 47 27 45 Z"
+    fill="url(#flameGrad)"
+    filter="url(#glow)"
+  />
+
+  <!-- Intense White/Yellow Inner Jet Core Flame -->
+  <path
+    class="flame-inner"
+    d="M29 45 C29 45 30 54 32 58 C34 54 35 45 35 45 Z"
+    fill="#FFFFFF"
+  />
+
+  <!-- Left 3D Wing (Angled) -->
+  <path d="M26 30 L13 44 L20 46 L27 38 Z" fill="url(#fin3d)" stroke="#19E4F2" stroke-width="0.75"/>
+
+  <!-- Right 3D Wing (Angled with Shadow) -->
+  <path d="M38 30 L51 44 L44 46 L37 38 Z" fill="url(#fin3d)" stroke="#19E4F2" stroke-width="0.75"/>
+
+  <!-- Center 3D Rocket Fuselage / "A" Frame -->
+  <path
+    d="M32 6 C28 14 26 28 26 45 L38 45 C38 28 36 14 32 6 Z"
+    fill="url(#body3d)"
+    stroke="#E0F7FA"
+    stroke-width="0.8"
+  />
+
+  <!-- 3D Specular Highlight Ridge on Nosecone -->
+  <path d="M32 7 L32 44" stroke="#FFFFFF" stroke-width="0.8" stroke-opacity="0.7"/>
+
+  <!-- Rocket Engine Nozzle (Dark Titanium + Orange Hot Ring) -->
+  <path d="M27 44 L37 44 L35.5 46.5 L28.5 46.5 Z" fill="#FF6A19" stroke="#FFA726" stroke-width="0.5"/>
+
+  <!-- 3D Cockpit Window with Glass Reflection -->
+  <ellipse cx="32" cy="22" rx="3.5" ry="6" fill="url(#cockpit3d)" stroke="#FFFFFF" stroke-width="0.8"/>
+  <ellipse cx="31.2" cy="19.5" rx="1.2" ry="2" fill="#FFFFFF" opacity="0.85"/>
+</svg>

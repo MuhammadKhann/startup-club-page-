@@ -14,6 +14,12 @@ export interface TrackInfo {
   upcomingSprints: string[];
 }
 
+export const OFFICIAL_LINKS = {
+  RECRUITMENT_FORM: 'https://forms.gle/frAYWhapYd1fbd6o7',
+  WHATSAPP_COMMUNITY: 'https://chat.whatsapp.com/IL8LVPRgfz51E2S9zb1DQ6',
+};
+
+
 export const TRACKS: TrackInfo[] = [
   {
     id: 'tech-ai',
