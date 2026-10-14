@@ -1,0 +1,6 @@
+{
+  "name": "AU Startup Club — The Rebuild",
+  "description": "The student startup accelerator of Air University Multan. Stop collecting titles. Start building things that matter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
