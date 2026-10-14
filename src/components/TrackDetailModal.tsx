@@ -16,7 +16,7 @@ export const TrackDetailModal: React.FC<TrackDetailModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-      <div className="relative w-full max-w-2xl bg-[#070b14] border border-white/20 rounded-2xl shadow-2xl p-6 sm:p-8 text-white max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-[#0c0e17] border border-white/20 rounded-2xl shadow-2xl p-6 sm:p-8 text-white max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -37,18 +37,37 @@ export const TrackDetailModal: React.FC<TrackDetailModalProps> = ({
           <span className="font-mono text-xs uppercase tracking-wider text-zinc-400">
             {track.kicker}
           </span>
+          <span className="text-zinc-600">·</span>
+          <span className="text-xs font-mono text-[#00F0FF]">{track.discipline}</span>
         </div>
 
         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2">
           {track.name}
         </h2>
-        <p className="text-sm text-zinc-300 italic mb-6">"{track.quote}"</p>
+        <p className="text-sm text-zinc-300 italic mb-5">"{track.quote}"</p>
+
+        {/* Ideal for student majors */}
+        <div className="mb-6 p-3 rounded-xl bg-white/[0.03] border border-white/10">
+          <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block mb-1.5 font-bold">
+            Tailored For Academic Majors
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {track.idealFor.map((major) => (
+              <span
+                key={major}
+                className="px-2.5 py-1 rounded-md bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/25 text-xs font-mono"
+              >
+                {major}
+              </span>
+            ))}
+          </div>
+        </div>
 
         {/* Deliverables / Sprints */}
         <div className="space-y-6">
           <div>
-            <h4 className="text-xs font-mono uppercase tracking-wider text-[#19E4F2] mb-3">
-              Core Focus Areas
+            <h4 className="text-xs font-mono uppercase tracking-wider text-[#00F0FF] mb-3">
+              Core Venture Capabilities
             </h4>
             <div className="flex flex-wrap gap-2">
               {track.skills.map((skill) => (
@@ -63,8 +82,8 @@ export const TrackDetailModal: React.FC<TrackDetailModalProps> = ({
           </div>
 
           <div>
-            <h4 className="text-xs font-mono uppercase tracking-wider text-[#19E4F2] mb-3">
-              Upcoming Sprints (What You'll Build)
+            <h4 className="text-xs font-mono uppercase tracking-wider text-[#00F0FF] mb-3">
+              Upcoming Sprints (What Your Squad Delivers)
             </h4>
             <div className="space-y-2">
               {track.upcomingSprints.map((sprint, idx) => (
@@ -81,13 +100,13 @@ export const TrackDetailModal: React.FC<TrackDetailModalProps> = ({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-[#19E4F2] mb-2.5">
-                Open Builder Roles
+              <h4 className="text-xs font-mono uppercase tracking-wider text-[#00F0FF] mb-2.5">
+                Open Cohort & Council Roles
               </h4>
               <ul className="space-y-1.5 text-xs text-zinc-300">
                 {track.openRoles.map((role) => (
                   <li key={role} className="flex items-center gap-2">
-                    <span className="text-[#15AEEF]">✦</span>
+                    <span className="text-[#00F0FF]">✦</span>
                     <span>{role}</span>
                   </li>
                 ))}
@@ -95,14 +114,14 @@ export const TrackDetailModal: React.FC<TrackDetailModalProps> = ({
             </div>
 
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-[#19E4F2] mb-2.5">
-                Execution Stack & Tools
+              <h4 className="text-xs font-mono uppercase tracking-wider text-[#00F0FF] mb-2.5">
+                Execution Stack & Tooling
               </h4>
               <div className="flex flex-wrap gap-1.5">
                 {track.tools.map((t) => (
                   <span
                     key={t}
-                    className="px-2.5 py-1 rounded-md bg-[#0e1726] border border-white/10 text-[11px] font-mono text-zinc-300"
+                    className="px-2.5 py-1 rounded-md bg-[#131726] border border-white/10 text-[11px] font-mono text-zinc-300"
                   >
                     {t}
                   </span>
@@ -112,7 +131,7 @@ export const TrackDetailModal: React.FC<TrackDetailModalProps> = ({
           </div>
         </div>
 
-        {/* Action Button */}
+        {/* Action Buttons */}
         <div className="mt-8 pt-4 border-t border-white/10 flex flex-col sm:flex-row justify-end gap-3 items-center">
           <button
             onClick={onClose}
@@ -124,9 +143,9 @@ export const TrackDetailModal: React.FC<TrackDetailModalProps> = ({
             href={OFFICIAL_LINKS.RECRUITMENT_FORM}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-[0_0_15px_rgba(21,174,239,0.4)] text-center"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-[#00F0FF] hover:bg-[#0070F3] text-black hover:text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.4)] text-center"
           >
-            Open Official Form (90s) ↗
+            Apply for {track.name} (Form) ↗
           </a>
           <button
             onClick={() => {
@@ -142,4 +161,3 @@ export const TrackDetailModal: React.FC<TrackDetailModalProps> = ({
     </div>
   );
 };
-

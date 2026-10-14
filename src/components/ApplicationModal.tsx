@@ -251,27 +251,30 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
           <form onSubmit={handleNextStep2} className="space-y-4">
             <div>
               <label className="block text-xs font-medium text-zinc-300 mb-2">
-                Choose Primary Track <span className="text-[#FF6A19]">*</span>
+                Choose Primary Track (All Disciplines Welcome) <span className="text-[#FF6A19]">*</span>
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[260px] overflow-y-auto pr-1">
                 {TRACKS.map((t) => (
                   <button
                     key={t.id}
                     type="button"
                     onClick={() => setFormData({ ...formData, track: t.id })}
-                    className={`p-3 rounded-xl border text-left transition-all ${
+                    className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                       formData.track === t.id
-                        ? 'border-[#19E4F2] bg-[#19E4F2]/10 shadow-[0_0_12px_rgba(25,228,242,0.2)]'
+                        ? 'border-[#00F0FF] bg-[#00F0FF]/10 shadow-[0_0_12px_rgba(0,240,255,0.2)]'
                         : 'border-white/10 bg-white/5 hover:border-white/25'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-bold text-sm text-white">{t.name}</span>
+                    <div className="flex items-center justify-between mb-0.5">
+                      <span className="font-bold text-xs text-white">{t.name}</span>
                       <span
-                        className="w-2 h-2 rounded-full"
+                        className="w-2 h-2 rounded-full shrink-0"
                         style={{ backgroundColor: t.accentColor }}
                       />
                     </div>
+                    <span className="text-[10px] font-mono text-[#00F0FF] block mb-0.5">
+                      {t.discipline}
+                    </span>
                     <p className="text-[11px] text-zinc-400 line-clamp-1">{t.tagline}</p>
                   </button>
                 ))}
@@ -286,30 +289,30 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, roleTier: 'cohort' })}
-                  className={`p-3 rounded-xl border text-left transition-all ${
+                  className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                     formData.roleTier === 'cohort'
-                      ? 'border-[#15AEEF] bg-[#15AEEF]/10'
+                      ? 'border-[#00F0FF] bg-[#00F0FF]/10'
                       : 'border-white/10 bg-white/5 hover:border-white/20'
                   }`}
                 >
                   <span className="block font-semibold text-xs text-white">Active Cohort</span>
-                  <span className="text-[11px] text-zinc-400">Builder squad member, build projects</span>
+                  <span className="text-[11px] text-zinc-400">Co-founder or specialist in a startup squad</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, roleTier: 'council' })}
-                  className={`p-3 rounded-xl border text-left transition-all ${
+                  className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                     formData.roleTier === 'council'
                       ? 'border-[#FF6A19] bg-[#FF6A19]/10'
                       : 'border-white/10 bg-white/5 hover:border-white/20'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="block font-semibold text-xs text-white">Core Council</span>
-                    <span className="text-[9px] font-mono text-[#FF6A19] uppercase">Leadership</span>
+                    <span className="block font-semibold text-xs text-white">Executive Council</span>
+                    <span className="text-[9px] font-mono text-[#FF6A19] uppercase font-bold">Leadership</span>
                   </div>
-                  <span className="text-[11px] text-zinc-400">Direct tracks, ops & lead rebuild</span>
+                  <span className="text-[11px] text-zinc-400">Lead tracks, partnerships, and operations</span>
                 </button>
               </div>
             </div>
@@ -324,44 +327,44 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
               </button>
               <button
                 type="submit"
-                className="px-6 py-2.5 rounded-lg bg-[#15AEEF] hover:bg-[#19E4F2] text-black font-semibold text-sm transition-colors cursor-pointer"
+                className="px-6 py-2.5 rounded-lg bg-[#00F0FF] hover:bg-[#0070F3] text-black hover:text-white font-semibold text-sm transition-colors cursor-pointer"
               >
-                Next: Fast Builder Pitch →
+                Next: Venture Pitch →
               </button>
             </div>
           </form>
         )}
 
-        {/* STEP 3: Fast Builder Pitch */}
+        {/* STEP 3: Multidisciplinary Pitch */}
         {step === 3 && (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-xs font-medium text-zinc-300 mb-1.5">
-                What is 1 project, tool, or campaign you want to build this semester? <span className="text-[#FF6A19]">*</span>
+                What is 1 venture, market problem, product, or campaign you want to build or validate this semester? <span className="text-[#FF6A19]">*</span>
               </label>
               <textarea
                 required
                 rows={3}
                 value={formData.builderPitch}
                 onChange={(e) => setFormData({ ...formData, builderPitch: e.target.value })}
-                placeholder="e.g. I want to build an automated exam notifier for Air University students / create viral video reels for our tech events..."
-                className="w-full px-3.5 py-2.5 rounded-lg bg-black/60 border border-white/15 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-[#15AEEF] focus:ring-1 focus:ring-[#15AEEF]"
+                placeholder="e.g. As a BBA student, I want to model unit economics for a campus delivery network / As a designer, I want to rebrand local Pakistani startups / As a developer, I want to build an AI student assistant..."
+                className="w-full px-3.5 py-2.5 rounded-lg bg-black/60 border border-white/15 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-[#00F0FF] focus:ring-1 focus:ring-[#00F0FF]"
               />
             </div>
 
             <div>
               <label className="block text-xs font-medium text-zinc-300 mb-1.5">
-                Proof of Work / Links (Optional)
+                LinkedIn / Portfolio / Resume / GitHub (Optional)
               </label>
               <input
                 type="text"
                 value={formData.portfolioUrl}
                 onChange={(e) => setFormData({ ...formData, portfolioUrl: e.target.value })}
-                placeholder="GitHub, Behance, LinkedIn, Drive folder, or recent work link"
-                className="w-full px-3.5 py-2.5 rounded-lg bg-black/60 border border-white/15 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-[#15AEEF] focus:ring-1 focus:ring-[#15AEEF]"
+                placeholder="LinkedIn profile, Behance, GitHub, Google Drive portfolio, or writing sample"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-black/60 border border-white/15 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-[#00F0FF] focus:ring-1 focus:ring-[#00F0FF]"
               />
               <p className="text-[11px] text-zinc-400 mt-1">
-                No past links? Don't worry — dedication and willingness to execute matter most.
+                No prior startup experience? Don't worry — mindset, discipline, and execution drive matter most.
               </p>
             </div>
 
